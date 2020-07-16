@@ -1,14 +1,13 @@
 #include <iostream>
 
+//cout << "1 - Escolher Departamento" << endl;
+//cout << "2 - Excluir Departamento" << endl;
+
 using namespace std;
 
 int main() 
 {
-  cout << "1 - Lojas" << endl;
-  cout << "2 - Registrar Loja" << endl;
-  cout << "3 - Excluir Loja" << endl;
-  cout << "1 - Escolher Departamento" << endl;
-  cout << "2 - Excluir Departamento" << endl;
+  
 
   struct Lojas {
     string nome;
@@ -20,29 +19,60 @@ int main()
     };
   };
 
-  int qtdLojas, qtdDepartamentos, i;
+  int qtdDepartamentos, i = 0, opcao = -1, nLojas = 0, opcao1 = 1;
 
-  cout << "Digite a quantidade de lojas que vai ser registrada: ";
-  cin >> qtdLojas;
+  Lojas store[100];
 
-  Lojas store[qtdLojas];
+  while(opcao != 0){
 
-  for (i = 0; i < qtdLojas; i++)
+  cout << "Escolha uma opcao!" << endl;
+  cout << "1 - Lojas" << endl;
+  cout << "2 - Registrar Loja" << endl;
+  cout << "3 - Excluir Loja" << endl;
+  cout << "0 - Sair do sistema" << endl;
+  
+  cin >> opcao;
+
+  switch (opcao)
   {
-    cout << "Digite o nome da loja: " << i + 1 << endl;
+    case 1:
+      if (nLojas == 0)
+      {
+        cout << "Nao ha lojas registradas no sistema! \nCaso deseje registrar escolha a opcao no menu principal" << endl;
+      }
+
+      break;
+    case 2:
+      while (opcao1 != 0){
+      
+    cout << "Digite o nome da loja a ser registrada: " << i + 1 << endl;
     getchar();
     getline(cin, store[i].nome);
-    cout << "Digite o CNPJ da loja: " << i + 1 << endl;
+    cout << "Digite o CNPJ da loja registrada: " << i + 1 << endl;
     cin >> store[i].CNPJ;
-  }
-
-  for (i = 0; i < qtdLojas; i++)
+    getchar();
+    i++;
+    nLojas++;
+    cout << "Caso deseje parar de registrar digite '0': ";
+    cin >> opcao1;
+    }
+    opcao1 = 1;
+  for (i = 0; i < nLojas; i++)
   {
     cout << store[i].nome << endl;
     cout << store[i].CNPJ << endl;
   }
-
-  
+      break;
+    case 3:
+      break;
+    case 0:
+      cout << "Saindo do sistema";
+      break;
+    default:
+      cout << "Opcao invalida!";
+      break;
+  }
+}  
 
   return 0;
 }
