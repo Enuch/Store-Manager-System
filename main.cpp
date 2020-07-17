@@ -7,22 +7,29 @@ using namespace std;
 
 int main() 
 {
-  
-
-  struct Lojas {
-    string nome;
-    int CNPJ;
-    struct Departamentos{
+  struct Departamentos{
       int codigo;
       string descricao;
       int qtdFuncionario;
-    };
+      
+  };
+  Departamentos dep[100];
+
+  struct Lojas {
+    string nome;
+    string descricao;
+      Departamentos dep[100];
+    
+    int CNPJ;
   };
 
-  int qtdDepartamentos, i = 0, opcao = -1, nLojas = 0, opcao1 = 1, CNPJaux = -5;
+  
+
+  int i = 0, opcao = -1, nLojas = 0, opcao1 = 1, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0;
   bool bol = false, bol2 = false;
 
   Lojas store[100];
+  
 
   while(opcao != 0){
   system("cls");
@@ -30,6 +37,7 @@ int main()
   cout << "1 - Lojas" << endl;
   cout << "2 - Registrar Loja" << endl;
   cout << "3 - Excluir Loja" << endl;
+  cout << "4 - Relatorio de todas as lojas" << endl;
   cout << "0 - Sair do sistema" << endl;
   
   cin >> opcao;
@@ -53,14 +61,20 @@ int main()
 
       break;
     case 2:
-      while (opcao1 != 0){
-        nLojas++;
+    while (opcao1 != 0){
+    nLojas++;
       
     cout << "Digite o nome da loja a ser registrada: " << i + 1 << endl;
     getchar();
     getline(cin, store[i].nome);
+    cout << "De um descricao a sua loja" << endl;
+    getline(cin, store[i].descricao);
     cout << "Digite o CNPJ da loja: " << i + 1 << endl;
-    cin >> CNPJaux;
+    if (i == 0){
+      cin >> store[i].CNPJ;
+    }
+    else{
+      cin >> CNPJaux;
     getchar();
     while(bol2 == false)
     {
@@ -80,27 +94,51 @@ int main()
       }
       else
       {
-        
         bol2 = true;
         store[i].CNPJ = CNPJaux;
-        cout << bol << endl;
       }
     }
     bol2 = false;
 
+    }
+    
+
     i++;
+
+    cout << "Quantos departamentos a loja tem? " << endl;
+    cin >> nDepartamentos;
+
+      for (a = 0; a < nDepartamentos; a++)
+      {
+        cout << "Digite o codigo do departamento: ";
+        cin >> store[i].dep[a].codigo;
+        getchar();
+        cout << "Digite a descricao do departamento: ";
+        getline(cin, store[i].dep[a].descricao);
+        cout << "Digite a quantidadea funcionario: ";
+        cin >> store[i].dep[a].qtdFuncionario;
+      }
+
+    cout << store[i].nome << endl;
+    cout << store[i].descricao << endl;
+    cout << store[i].CNPJ << endl;
     
     cout << "Caso deseje parar de registrar digite '0': ";
     cin >> opcao1;
     }
     opcao1 = 1;
-  for (i = 0; i < nLojas; i++)
-  {
-    cout << store[i].nome << endl;
-    cout << store[i].CNPJ << endl;
-  }
+
       break;
     case 3:
+      break;
+    case 4:
+      for (i = 0; i < nLojas; i++)
+      {
+        cout << "Loja - " << store[i].nome << endl;
+        cout << "Descricao: '" <<store[i].descricao << "'" << endl;
+        cout << "CNPJ: "<<store[i].CNPJ << endl;
+        cout << '\n';
+      }
       break;
     case 0:
       cout << "Saindo do sistema";
