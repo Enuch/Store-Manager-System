@@ -22,7 +22,7 @@ int main()
         int CNPJ;
     };
 
-    int i = 0, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ;
+    int i = 0, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ, opcao4;
     string nomeBusca;
     bool bol = false, bol2 = false;
 
@@ -50,28 +50,36 @@ int main()
             }
             else
             {
-                for (i = 0; i < nLojas; i++)
+                while (opcao4 != 0)
                 {
-                    cout << i << " - " << store[i].nome << endl;
-                }
-                cout << "Busque digitando o nome da loja desejada e depois seu CNPJ: " << endl;
-                getchar();
-                getline(cin, nomeBusca);
-                cin >> buscaCNPJ;
-                for (b = 0; b < nLojas; b++)
-                {
-                    if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
+                    for (i = 0; i < nLojas; i++)
                     {
-                        cout << "Loja - " << store[b].nome << endl;
-                        cout << "Descricao: '" << store[b].descricao << "'" << endl;
-                        cout << "CNPJ - " << store[b].CNPJ << endl;
+                        cout << i << " - " << store[i].nome << endl;
                     }
-                    else
+                    cout << "Busque digitando o nome da loja desejada e depois seu CNPJ: " << endl;
+                    getchar();
+                    getline(cin, nomeBusca);
+                    cin >> buscaCNPJ;
+                    for (b = 0; b < nLojas; b++)
+                    {
+                        if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
+                        {
+                            cout << "Loja - " << store[b].nome << endl;
+                            cout << "Descricao: '" << store[b].descricao << "'" << endl;
+                            cout << "CNPJ - " << store[b].CNPJ << endl;
+                            bol = true;
+                        }
+                    }
+                    if (bol == false)
                     {
                         cout << "Loja nao encontrada! " << endl;
                     }
+                    bol = false;
+                    cout << "Buscar outra loja digite '1' para sair digite '0'";
+                    cin >> opcao4;
                 }
             }
+
             break;
         case 2:
             while (opcao1 != 0)
@@ -162,15 +170,23 @@ int main()
             {
                 if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
                 {
-                    cout << "Loja - " << store[b].nome << " - Digite o novo nome da loja: "; cin >> store[b].nome;
-                    cout << "Descricao: '" << store[b].descricao << "'" << " - Digite a nova descricao: "; cin >> store[b].descricao;
-                    cout << "CNPJ - " << store[b].CNPJ << " - Digite o novo CNPJ: "; cin >> store[b].CNPJ;
+                    cout << "Loja - " << store[b].nome << " - Digite o novo nome da loja: ";
+                    cin >> store[b].nome;
+                    getchar();
+                    cout << "Descricao: '" << store[b].descricao << "'"
+                         << " - Digite a nova descricao: ";
+                    getline(cin, store[b].descricao);
+                    cout << "CNPJ - " << store[b].CNPJ << " - Digite o novo CNPJ: ";
+                    cin >> store[b].CNPJ;
+                    bol = true;
                 }
-                else if (store[b].nome != nomeBusca || store[b].CNPJ != buscaCNPJ)
+                if (bol = false)
                 {
                     cout << "Loja nao encontrada! " << endl;
                 }
+                bol = false;
             }
+
             break;
         case 5:
             for (i = 0; i < nLojas; i++)
