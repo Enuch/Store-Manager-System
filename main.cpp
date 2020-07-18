@@ -7,6 +7,9 @@ using namespace std;
 
 int main()
 {
+    cout << "Ola, esse sistema foi desenvolvido para o gerenciamento de lojas e seus departamentos";
+    
+    
     struct Departamentos
     {
         int codigo;
@@ -131,7 +134,7 @@ int main()
 
                 for (a = 0; a < nDepartamentos; a++)
                 {
-                    cout << "Digite o codigo do departamento: ";
+                    cout << "Digite o codigo referente ao departamento: ";
                     cin >> store[i].dep[a].codigo;
                     getchar();
                     cout << "Digite a descricao do departamento: ";
@@ -206,7 +209,7 @@ int main()
                     cin >> store[b].nome;
                     getchar();
                     cout << "Descricao: '" << store[b].descricao << "'"
-                         << " - Digite a nova descricao: ";
+                         << " - Digite qual nova descricao adicionar: ";
                     getline(cin, store[b].descricao);
                     cout << "CNPJ - " << store[b].CNPJ << " - Digite o novo CNPJ: ";
                     if (nLojas == 0)
@@ -277,6 +280,7 @@ int main()
         system("Pause");
         system("cls");
     }
-
+    cout << "\n Esse progama foi desenvolvido por Enuch e Jean Fernandes;
+    cout << "\n Fim de progama...";
     return 0;
 }
