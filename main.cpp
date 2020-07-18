@@ -24,7 +24,7 @@ int main()
 
     int i = 0, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ, opcao4;
     string nomeBusca;
-    bool bol = false, bol2 = false;
+    bool bol = false, bol2 = false, bol3;
 
     Lojas store[100];
 
@@ -78,6 +78,7 @@ int main()
                     cout << "Buscar outra loja digite '1' para sair digite '0'";
                     cin >> opcao4;
                 }
+                opcao4 = 1;
             }
 
             break;
@@ -153,6 +154,37 @@ int main()
 
             break;
         case 3:
+            cout << "Escolha a loja que deseja excluir do sistema: " << endl;
+            for (i = 0; i < nLojas; i++)
+            {
+                cout << "\nLoja - " << store[i].nome << endl;
+                cout << "Descricao: '" << store[i].descricao << "'" << endl;
+                cout << "CNPJ: " << store[i].CNPJ << endl;
+            }
+            cout << "Busque digitando o nome da loja desejada e depois seu CNPJ: " << endl;
+            getchar();
+            getline(cin, nomeBusca);
+            cin >> buscaCNPJ;
+            for (b = 0; b < nLojas; b++)
+            {
+                if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
+                {
+                    cout << "Loja - " << store[b].nome << " - APAGANDO! " << endl;
+                    store[b].nome = "Nao ha loja registrada";
+                    cout << "Descricao: '" << store[b].descricao << "'"
+                         << " - APAGANDO!" << endl;
+                    store[b].descricao = "";
+                    cout << "CNPJ - " << store[b].CNPJ << " - APAGANDO!: " << endl;
+                    store[b].CNPJ = 0;
+                    bol = true;
+                }
+                if (bol = false)
+                {
+                    cout << "Vazio!" << endl;
+                }
+                bol = false;
+            }
+
             break;
         case 4:
             cout << "Escolha a loja que vai ser alterada: " << endl;
@@ -177,7 +209,38 @@ int main()
                          << " - Digite a nova descricao: ";
                     getline(cin, store[b].descricao);
                     cout << "CNPJ - " << store[b].CNPJ << " - Digite o novo CNPJ: ";
-                    cin >> store[b].CNPJ;
+                    if (nLojas == 0)
+                    {
+                        cout << "Não ha lojas para serem alteradas!" << endl;
+                    }
+                    else
+                    {
+                        cin >> CNPJaux;
+                        getchar();
+                        while (bol2 == false)
+                        {
+                            for (int j = 0; j < nLojas; j++)
+                            {
+                                if (store[j].CNPJ == CNPJaux)
+                                {
+                                    bol = true;
+                                }
+                            }
+                            if (bol == true)
+                            {
+                                bol = false;
+                                cout << "'CNPJ' ja cadastrado \nPor favor digite outro: " << endl;
+                                cout << "Digite o CNPJ da loja: " << i + 1 << endl;
+                                cin >> CNPJaux;
+                            }
+                            else
+                            {
+                                bol2 = true;
+                                store[b].CNPJ = CNPJaux;
+                            }
+                        }
+                        bol2 = false;
+                    }
                     bol = true;
                 }
                 if (bol = false)
