@@ -20,6 +20,7 @@ int main()
         string descricao;
         Departamentos dep[100];
         int CNPJ;
+        int nDepartamentos = 0;
     };
 
     int i = 0, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ, opcao4;
@@ -128,6 +129,7 @@ int main()
 
                 cout << "Quantos departamentos a loja tem? " << endl;
                 cin >> nDepartamentos;
+                store[i].nDepartamentos = nDepartamentos;
 
                 for (a = 0; a < nDepartamentos; a++)
                 {
@@ -254,10 +256,11 @@ int main()
         case 5:
             for (i = 0; i < nLojas; i++)
             {
+                cout << nLojas << " Loja ja registradas. \nAbaixo a lista com relatorio de todas as lojas e seus departamentos ja registrados: " << endl;
                 cout << "\nLoja - " << store[i].nome << endl;
                 cout << "Descricao: '" << store[i].descricao << "'" << endl;
                 cout << "CNPJ: " << store[i].CNPJ << endl;
-                cout << "\nDepartamentos: " << endl;
+                cout << "\n" <<store[i].nDepartamentos << " departamentos registrados na loja " << store[i].nome << " \nAbaixo a lista de departamentos: " << endl;
                 for (int b = 0; b < nDepartamentos; b++)
                 {
                     cout << "Codigo - " << store[i].dep[b].codigo << endl;
@@ -268,10 +271,10 @@ int main()
             }
             break;
         case 0:
-            cout << "Saindo do sistema";
+            cout << "Saindo do sistema" << endl;
             break;
         default:
-            cout << "Opcao invalida!";
+            cout << "Opcao invalida!" << endl;
             break;
         }
         system("Pause");
