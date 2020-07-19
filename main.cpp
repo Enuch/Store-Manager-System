@@ -1,6 +1,6 @@
 #include <iostream>
 
-// Codigo criado por Jean e Enuch.
+// Codigo criado por Jean Fernandes e Enuch Santos.
 // TADS 2020.5 Unidade 2
 
 using namespace std;
@@ -23,7 +23,7 @@ int main()
         int nDepartamentos = 0;
     };
 
-    int i = 0, c, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ, opcao4, codigoBusca, opcao5;
+    int posicao = 0, i = 0, c, opcao = -1, nLojas = 0, opcao1 = 1, opcao3, CNPJaux = -5, a = 0, b = 0, nDepartamentos = 0, buscaCNPJ, opcao4, codigoBusca, opcao5;
     string nomeBusca;
     bool bol = false, bol2 = false, bol3, bol4 = false;
 
@@ -82,7 +82,7 @@ int main()
                             for (int a = 0; a < store[b].nDepartamentos; b++)
                             {
 
-                                cout << "1 - Para excluir um departamento \n2 - Para alterar \n3 - Para sair " << endl;
+                                cout << "1 - Para excluir um departamento \n2 - Para sair " << endl;
                                 cin >> opcao5;
                                 switch (opcao5)
                                 {
@@ -109,24 +109,6 @@ int main()
                                         }
                                     } while (bol4 == false);
 
-                                    break;
-                                case 2:
-                                    cout << "Digite o codigo do departamento para alterar seus dados: ";
-                                    cin >> codigoBusca;
-                                    for (c = 0; c < store[b].nDepartamentos; c++)
-                                    {
-                                        if (codigoBusca == store[b].dep[c].codigo)
-                                        {
-                                            cout << "Codigo anterior - " << store[b].dep[c].codigo << " Digite o novo codigo: ";
-                                            cin >> store[b].dep[c].codigo;
-                                            cout << "Ultima descricao posta: '" << store[b].dep[c].descricao << "' Digite a nova descricao: ";
-                                            cin >> store[b].dep[c].descricao;
-                                            cout << "Funcionario contratados atualmente: " << store[b].dep[c].qtdFuncionario << " Digite a atualizacao do numero de funcionarios: ";
-                                            cin >> store[b].dep[c].qtdFuncionario;
-                                            cout << "\nAtualizando informacoes de departamentos..." << endl;
-                                            cout << "Atualizado!" << endl;
-                                        }
-                                    }
                                     break;
                                 default:
                                     cout << "Saindo..." << endl;
@@ -160,8 +142,33 @@ int main()
                         cout << "-----------------------------" << endl;
                         cout << "Codigo - " << store[a].dep[b].codigo << endl;
                         cout << "Descricao: '" << store[a].dep[b].descricao << "'" << endl;
-                        cout << "Numero de funcionarios: " << store[a].dep[b].qtdFuncionario;
+                        cout << "Numero de funcionarios: " << store[a].dep[b].qtdFuncionario << endl;
+                        cout << "Posicao: " << b << endl;
                         cout << '\n';
+                    }
+                }
+            }
+            cout << "Para alterar os dados do departamento informe a loja a qual pertence e sua posicao na lista: " << endl;
+            cout << "Nome: ";
+            getchar();
+            getline(cin, nomeBusca);
+            cout << "Posicao: ";
+            cin >> posicao;
+            for (a = 0; a < nLojas; a++)
+            {
+                for (b = 0; b < store[a].nDepartamentos; b++)
+                {
+                    if (nomeBusca == store[a].nome && posicao == b)
+                    {
+                        cout << "Codigo anterior - " << store[a].dep[b].codigo << " Digite o novo codigo: ";
+                        cin >> store[a].dep[b].codigo;
+                        getchar();
+                        cout << "Ultima descricao posta: '" << store[a].dep[b].descricao << "' Digite a nova descricao: ";
+                        getline(cin,store[a].dep[b].descricao);
+                        cout << "Funcionario contratados atualmente: " << store[a].dep[b].qtdFuncionario << " Digite a atualizacao do numero de funcionarios: ";
+                        cin >> store[a].dep[b].qtdFuncionario;
+                        cout << "\nAtualizando informacoes de departamentos..." << endl;
+                        cout << "Atualizado!" << endl;
                     }
                 }
             }
