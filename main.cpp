@@ -34,8 +34,8 @@ int main()
         cout << "TADS GERENCIAMENTO DE LOJA E DEPARTAMENTOS" << endl;
 
         cout << "Escolha uma opcao!" << endl;
-        cout << "1 - Buscar lojas e alterar/excluir departamentos" << endl;
-        cout << "2 - Buscar departamentos" << endl;
+        cout << "1 - Buscar lojas e excluir departamentos" << endl;
+        cout << "2 - Buscar departamentos e alterar dados" << endl;
         cout << "3 - Registrar uma Loja" << endl;
         cout << "4 - Excluir dados de uma Loja" << endl;
         cout << "5 - Alterar dados de uma Loja" << endl;
@@ -131,44 +131,51 @@ int main()
 
             break;
         case 2:
-            cout << "Digite um codigo de departamento para busca-lo: ";
-            cin >> codigoBusca;
-            for (a = 0; a < nLojas; a++)
+            if (nDepartamentos == 0)
             {
-                for (b = 0; b < store[a].nDepartamentos; b++)
+                cout << "Sistema vazio!" << endl;
+            }
+            else
+            {
+                cout << "Digite um codigo de departamento para busca-lo: ";
+                cin >> codigoBusca;
+                for (a = 0; a < nLojas; a++)
                 {
-                    if (store[a].dep[b].codigo == codigoBusca)
+                    for (b = 0; b < store[a].nDepartamentos; b++)
                     {
-                        cout << "-----------------------------" << endl;
-                        cout << "Codigo - " << store[a].dep[b].codigo << endl;
-                        cout << "Descricao: '" << store[a].dep[b].descricao << "'" << endl;
-                        cout << "Numero de funcionarios: " << store[a].dep[b].qtdFuncionario << endl;
-                        cout << "Posicao: " << b << endl;
-                        cout << '\n';
+                        if (store[a].dep[b].codigo == codigoBusca)
+                        {
+                            cout << "-----------------------------" << endl;
+                            cout << "Codigo - " << store[a].dep[b].codigo << endl;
+                            cout << "Descricao: '" << store[a].dep[b].descricao << "'" << endl;
+                            cout << "Numero de funcionarios: " << store[a].dep[b].qtdFuncionario << endl;
+                            cout << "Posicao: " << b << endl;
+                            cout << '\n';
+                        }
                     }
                 }
-            }
-            cout << "Para alterar os dados do departamento informe a loja a qual pertence e sua posicao na lista: " << endl;
-            cout << "Nome: ";
-            getchar();
-            getline(cin, nomeBusca);
-            cout << "Posicao: ";
-            cin >> posicao;
-            for (a = 0; a < nLojas; a++)
-            {
-                for (b = 0; b < store[a].nDepartamentos; b++)
+                cout << "Para alterar os dados do departamento informe a loja a qual pertence e sua posicao na lista: " << endl;
+                cout << "Nome: ";
+                getchar();
+                getline(cin, nomeBusca);
+                cout << "Posicao: ";
+                cin >> posicao;
+                for (a = 0; a < nLojas; a++)
                 {
-                    if (nomeBusca == store[a].nome && posicao == b)
+                    for (b = 0; b < store[a].nDepartamentos; b++)
                     {
-                        cout << "Codigo anterior - " << store[a].dep[b].codigo << " Digite o novo codigo: ";
-                        cin >> store[a].dep[b].codigo;
-                        getchar();
-                        cout << "Ultima descricao posta: '" << store[a].dep[b].descricao << "' Digite a nova descricao: ";
-                        getline(cin,store[a].dep[b].descricao);
-                        cout << "Funcionario contratados atualmente: " << store[a].dep[b].qtdFuncionario << " Digite a atualizacao do numero de funcionarios: ";
-                        cin >> store[a].dep[b].qtdFuncionario;
-                        cout << "\nAtualizando informacoes de departamentos..." << endl;
-                        cout << "Atualizado!" << endl;
+                        if (nomeBusca == store[a].nome && posicao == b)
+                        {
+                            cout << "Codigo anterior - " << store[a].dep[b].codigo << " -> Digite o novo codigo: ";
+                            cin >> store[a].dep[b].codigo;
+                            getchar();
+                            cout << "Ultima descricao posta: '" << store[a].dep[b].descricao << "' -> Digite a nova descricao: ";
+                            getline(cin, store[a].dep[b].descricao);
+                            cout << "Funcionario contratados atualmente: " << store[a].dep[b].qtdFuncionario << " -> Digite a atualizacao do numero de funcionarios: ";
+                            cin >> store[a].dep[b].qtdFuncionario;
+                            cout << "\nAtualizando informacoes de departamentos..." << endl;
+                            cout << "Atualizado!" << endl;
+                        }
                     }
                 }
             }
@@ -380,6 +387,7 @@ int main()
                         cout << "Numero de funcionarios: " << store[i].dep[b].qtdFuncionario;
                         cout << '\n';
                     }
+                    cout << "------------------------------" << endl;
                 }
             }
 
