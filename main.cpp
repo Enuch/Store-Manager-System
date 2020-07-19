@@ -348,7 +348,7 @@ int main()
                             {
                                 bol2 = true;
                                 store[b].CNPJ = CNPJaux;
-                                cout << "\nDados das loja alterados!!" << endl;
+                                cout << "\nDados da loja alterados!!" << endl;
                             }
                         }
                         bol2 = false;
@@ -359,6 +359,8 @@ int main()
                     {
                         cout << "Loja nao encontrada! " << endl;
                     }
+                    
+                    
                     bol = false;
                 }
             }
