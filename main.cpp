@@ -1,7 +1,7 @@
 #include <iostream>
 
-//cout << "1 - Escolher Departamento" << endl;
-//cout << "2 - Excluir Departamento" << endl;
+// Codigo criado por Jean e Enuch.
+// TADS 2020.5 Unidade 2
 
 using namespace std;
 
@@ -31,14 +31,15 @@ int main()
 
     while (opcao != 0)
     {
-        cout << "BEM VINDO AO SISTEMA DE GERENCIAMENTO E LOJAS ONLINE!" << endl;
+        cout << "TADS GERENCIAMENTO DE LOJA E DEPARTAMENTOS" << endl;
 
         cout << "Escolha uma opcao!" << endl;
-        cout << "1 - Lojas" << endl;
-        cout << "2 - Registrar Loja" << endl;
-        cout << "3 - Excluir Loja" << endl;
-        cout << "4 - Alterar Loja" << endl;
-        cout << "5 - Relatorio de todas as Lojas" << endl;
+        cout << "1 - Buscar lojas e alterar/excluir departamentos" << endl;
+        cout << "2 - Buscar departamentos" << endl;
+        cout << "3 - Registrar uma Loja" << endl;
+        cout << "4 - Excluir dados de uma Loja" << endl;
+        cout << "5 - Alterar dados de uma Loja" << endl;
+        cout << "6 - Relatorio de todas as Lojas e departamentos" << endl;
         cout << "0 - Sair do sistema" << endl;
 
         cin >> opcao;
@@ -54,32 +55,34 @@ int main()
             {
                 while (opcao4 != 0)
                 {
-                    for (i = 0; i < nLojas; i++)
-                    {
-                        cout << i << " - " << store[i].nome << endl;
-                    }
                     cout << "Para acessar as informacoes da loja digite o nome e o CNPJ da loja: " << endl;
                     getchar();
+                    cout << "Nome: ";
                     getline(cin, nomeBusca);
+                    cout << "CNPJ: ";
                     cin >> buscaCNPJ;
                     for (b = 0; b < nLojas; b++)
                     {
                         if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
                         {
+                            cout << "------------------------------" << endl;
                             cout << "Loja - " << store[b].nome << endl;
                             cout << "Descricao: '" << store[b].descricao << "'" << endl;
-                            cout << "CNPJ - " << store[b].CNPJ << endl;
+                            cout << "CNPJ: " << store[b].CNPJ << endl;
                             bol = true;
                             cout << "\n"
-                                 << store[b].nDepartamentos << " departamentos registrados na loja " << store[i].nome << " \nAbaixo a lista de departamentos: " << endl;
+                                 << "Departamentos registrados na loja " << store[i].nome << ": " << store[b].nDepartamentos << "\nAbaixo a lista de departamentos: " << endl;
+                            for (c = 0; c < store[b].nDepartamentos; c++)
+                            {
+                                cout << "Codigo - " << store[b].dep[c].codigo << endl;
+                                cout << "Descricao: '" << store[b].dep[c].descricao << "'" << endl;
+                                cout << "Numero de funcionarios: " << store[b].dep[c].qtdFuncionario << endl;
+                                cout << '\n';
+                            }
                             for (int a = 0; a < store[b].nDepartamentos; b++)
                             {
-                                cout << "Codigo - " << store[b].dep[a].codigo << endl;
-                                cout << "Descricao - " << store[b].dep[a].descricao << endl;
-                                cout << "Numero de funcionarios - " << store[b].dep[a].qtdFuncionario << endl;
-                                cout << '\n';
 
-                                cout << "Para excluir um departamento digite 1 \nPara alterar digite 2 \nPara sair 3" << endl;
+                                cout << "1 - Para excluir um departamento \n2 - Para alterar \n3 - Para sair " << endl;
                                 cin >> opcao5;
                                 switch (opcao5)
                                 {
@@ -97,6 +100,8 @@ int main()
                                                 store[b].dep[c].qtdFuncionario = 0;
                                             }
                                             bol4 = true;
+                                            cout << "\nApagando informacoes de departamentos..." << endl;
+                                            cout << "Apagado!" << endl;
                                         }
                                         else
                                         {
@@ -104,7 +109,7 @@ int main()
                                         }
                                     } while (bol4 == false);
 
-                                        break;
+                                    break;
                                 case 2:
                                     cout << "Digite o codigo do departamento para alterar seus dados: ";
                                     cin >> codigoBusca;
@@ -112,16 +117,19 @@ int main()
                                     {
                                         if (codigoBusca == store[b].dep[c].codigo)
                                         {
-                                            cout << "Codigo anterios - " << store[b].dep[c].codigo << " Digite o novo codigo: ";
+                                            cout << "Codigo anterior - " << store[b].dep[c].codigo << " Digite o novo codigo: ";
                                             cin >> store[b].dep[c].codigo;
                                             cout << "Ultima descricao posta: '" << store[b].dep[c].descricao << "' Digite a nova descricao: ";
                                             cin >> store[b].dep[c].descricao;
-                                            cout << "Funcionario contratados atualmente: " << store[b].dep[c].qtdFuncionario << "Digite a atualizacao do numero de funcionarios: ";
+                                            cout << "Funcionario contratados atualmente: " << store[b].dep[c].qtdFuncionario << " Digite a atualizacao do numero de funcionarios: ";
                                             cin >> store[b].dep[c].qtdFuncionario;
+                                            cout << "\nAtualizando informacoes de departamentos..." << endl;
+                                            cout << "Atualizado!" << endl;
                                         }
                                     }
                                     break;
                                 default:
+                                    cout << "Saindo..." << endl;
                                     break;
                                 }
                             }
@@ -141,6 +149,25 @@ int main()
 
             break;
         case 2:
+            cout << "Digite um codigo de departamento para busca-lo: ";
+            cin >> codigoBusca;
+            for (a = 0; a < nLojas; a++)
+            {
+                for (b = 0; b < store[a].nDepartamentos; b++)
+                {
+                    if (store[a].dep[b].codigo == codigoBusca)
+                    {
+                        cout << "-----------------------------" << endl;
+                        cout << "Codigo - " << store[a].dep[b].codigo << endl;
+                        cout << "Descricao: '" << store[a].dep[b].descricao << "'" << endl;
+                        cout << "Numero de funcionarios: " << store[a].dep[b].qtdFuncionario;
+                        cout << '\n';
+                    }
+                }
+            }
+
+            break;
+        case 3:
             while (opcao1 != 0)
             {
                 nLojas++;
@@ -198,10 +225,11 @@ int main()
                     cout << "Digite a quantidade funcionario: ";
                     cin >> store[i].dep[a].qtdFuncionario;
                 }
-
-                cout << store[i].nome << endl;
-                cout << store[i].descricao << endl;
-                cout << store[i].CNPJ << endl;
+                cout << "Loja e informacoes registradas!! \n";
+                cout << "Nome - " << store[i].nome << endl;
+                cout << "Descricao: '" << store[i].descricao << "'" << endl;
+                cout << "CNPJ: " << store[i].CNPJ << endl;
+                cout << "Departamentos: " << store[i].nDepartamentos << endl;
 
                 cout << "Caso deseje parar de registrar digite '0': ";
                 cin >> opcao1;
@@ -212,23 +240,20 @@ int main()
             opcao1 = 1;
 
             break;
-        case 3:
+        case 4:
             if (nLojas == 0)
             {
                 cout << "Sistema vazio!" << endl;
             }
             else
             {
-                cout << "Escolha a loja que deseja excluir do sistema: " << endl;
-                for (i = 0; i < nLojas; i++)
-                {
-                    cout << "\nLoja - " << store[i].nome << endl;
-                    cout << "Descricao: '" << store[i].descricao << "'" << endl;
-                    cout << "CNPJ: " << store[i].CNPJ << endl;
-                }
-                cout << "Busque digitando o nome da loja desejada e depois seu CNPJ: " << endl;
+                cout << "Para excluir os dados de uma loja do sistema: " << endl;
+
+                cout << "Informe o nome da loja desejada e depois seu CNPJ: " << endl;
                 getchar();
+                cout << "Nome: ";
                 getline(cin, nomeBusca);
+                cout << "CNPJ: ";
                 cin >> buscaCNPJ;
                 for (b = 0; b < nLojas; b++)
                 {
@@ -239,8 +264,10 @@ int main()
                         cout << "Descricao: '" << store[b].descricao << "'"
                              << " - APAGANDO!" << endl;
                         store[b].descricao = "Vazio";
-                        cout << "CNPJ - " << store[b].CNPJ << " - APAGANDO!: " << endl;
+                        cout << "CNPJ - " << store[b].CNPJ << " - APAGANDO! " << endl;
                         store[b].CNPJ = 0;
+                        cout << "Departamentos - " << store[b].nDepartamentos << " - APAGANDO!" << endl;
+                        store[b].nDepartamentos = 0;
                         for (a = 0; a < store[b].nDepartamentos; a++)
                         {
                             store[b].dep[a].codigo = 0;
@@ -258,7 +285,7 @@ int main()
             }
 
             break;
-        case 4:
+        case 5:
 
             if (nLojas == 0)
             {
@@ -266,28 +293,24 @@ int main()
             }
             else
             {
-                cout << "Escolha a loja que vai ser alterada: " << endl;
-                for (i = 0; i < nLojas; i++)
-                {
-                    cout << "\nLoja - " << store[i].nome << endl;
-                    cout << "Descricao: '" << store[i].descricao << "'" << endl;
-                    cout << "CNPJ: " << store[i].CNPJ << endl;
-                }
-                cout << "Busque digitando o nome da loja desejada e depois seu CNPJ: " << endl;
+                cout << "Para alterar os dados da loja: " << endl;
+                cout << "Iforme o nome da loja desejada e depois seu CNPJ: " << endl;
                 getchar();
+                cout << "Nome: ";
                 getline(cin, nomeBusca);
+                cout << "CNPJ: ";
                 cin >> buscaCNPJ;
                 for (b = 0; b < nLojas; b++)
                 {
                     if (store[b].nome == nomeBusca && store[b].CNPJ == buscaCNPJ)
                     {
-                        cout << "Loja - " << store[b].nome << " - Digite o novo nome da loja: ";
+                        cout << "Loja: " << store[b].nome << " -> Digite o novo nome da loja: ";
                         cin >> store[b].nome;
                         getchar();
                         cout << "Descricao: '" << store[b].descricao << "'"
-                             << " - Digite a nova descricao: ";
+                             << " -> Digite a nova descricao: ";
                         getline(cin, store[b].descricao);
-                        cout << "CNPJ - " << store[b].CNPJ << " - Digite o novo CNPJ: ";
+                        cout << "CNPJ: " << store[b].CNPJ << " -> Digite o novo CNPJ: ";
 
                         cin >> CNPJaux;
                         getchar();
@@ -311,13 +334,14 @@ int main()
                             {
                                 bol2 = true;
                                 store[b].CNPJ = CNPJaux;
+                                cout << "\nDados das loja alterados!!" << endl;
                             }
                         }
                         bol2 = false;
 
                         bol = true;
                     }
-                    if (bol = false)
+                    else if (store[b].nome != nomeBusca || store[b].CNPJ != buscaCNPJ)
                     {
                         cout << "Loja nao encontrada! " << endl;
                     }
@@ -326,7 +350,7 @@ int main()
             }
 
             break;
-        case 5:
+        case 6:
             if (nLojas == 0)
             {
                 cout << "Sistema vazio!" << endl;
@@ -336,6 +360,7 @@ int main()
                 cout << nLojas << " Loja ja registradas. \nAbaixo a lista com relatorio de todas as lojas e seus departamentos ja registrados: " << endl;
                 for (i = 0; i < nLojas; i++)
                 {
+                    cout << "---------------------------------------";
                     cout << "\nLoja - " << store[i].nome << endl;
                     cout << "Descricao: '" << store[i].descricao << "'" << endl;
                     cout << "CNPJ: " << store[i].CNPJ << endl;
@@ -344,8 +369,8 @@ int main()
                     for (int b = 0; b < store[i].nDepartamentos; b++)
                     {
                         cout << "Codigo - " << store[i].dep[b].codigo << endl;
-                        cout << "Descricao - " << store[i].dep[b].descricao << endl;
-                        cout << "Numero de funcionarios - " << store[i].dep[b].qtdFuncionario << endl;
+                        cout << "Descricao: '" << store[i].dep[b].descricao << "'" << endl;
+                        cout << "Numero de funcionarios: " << store[i].dep[b].qtdFuncionario;
                         cout << '\n';
                     }
                 }
