@@ -290,7 +290,7 @@ int main()
                         }
                         bol = true;
                     }
-                    if (bol = false)
+                    if (bol == false)
                     {
                         cout << "Vazio!" << endl;
                     }
