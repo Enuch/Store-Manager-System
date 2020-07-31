@@ -285,7 +285,6 @@ int main()
 
             break;
         case 2:
-            bol = true;
             if (nDepartamentos == 0)
             {
                 cout << "Sistema vazio!" << endl;
