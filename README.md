@@ -1,4 +1,4 @@
-# TADS - Prova 
+# UFRN/TADS - Prova 
 Um algoritmo em C++ que simula a administração de lojas e seus departamentos podendo alterar, dados das lojas e departamentos e excluir completamenta todos os departamentos de uma loja ou uma loja com seus departamentos.
 ### Conhecimentos usados
 Esse trabalho teve como foco aprender Structures e ponteiros.
