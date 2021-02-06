@@ -1,7 +1,6 @@
 # TADS - Prova 
-Um algoritmo (Pequeno sistema) de gerenciar lojas e seus departamentos podendo alterar, dados das lojas e departamentos e excluir completamenta todos os departamentos de uma loja ou uma loja completa com seus departamentos usando a liguagem C++.
+Um algoritmo em C++ que simula a administração de lojas e seus departamentos podendo alterar, dados das lojas e departamentos e excluir completamenta todos os departamentos de uma loja ou uma loja com seus departamentos.
 ### Conhecimentos usados
-Neste trabalho usa-se, strings, booleanos, inteiros, funções, estruturas de controle e repetição, vetores, structs e ponteiros.
+Esse trabalho teve como foco aprender Structures e ponteiros.
 ### StoreManager
-Um sistema para gerenciar registros de lojas e seus respectivos departamentos. Podendo excluir, adicionar e alterar todas as lojas e departamentos ou uma 
-única loja. Também pode-se registrar relatório da loja e seus departamentos, caracteristicas como CNPJ, nome da loja, descrição da loja, número de departamentos, quantidade de funcionários por departamento e código do departamento. Todos os dados ficam guardados em registros (structs) dentro de vetores e é possível acessar todos os registros por meio dos vetores usando estruturas de repetição ex: While e for par percorrer os indices dos vetores e acessar os conteúdos dentro de seus respectivos registros. 
+O algoritmo pode registrar lojas como structures e seus departamentos e dados como vetores dentro da structure, é possível excluir departamentos especificos, dados do departamento, alterar e excluir, como também é possível excluir todos de uma vez e registrar novos. Os vetores sempre que um indíce tiver seus dados excuídos os dados do indíce da frente passa para o anterior que teve os dados excluídos, isso serve para quando for mostrado o vetor e seus dados, não deixar indices vazios ou aparecer dados vazios.
